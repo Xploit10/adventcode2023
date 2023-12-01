@@ -33,14 +33,22 @@ for values in data:
     found_digits = {}
     for k, v in digit_mapping.items():
 
-        if k in values:
-            index = values.index(k)
-            found_digits[index] = k
-        if str(v) in values:
-            index = values.index(str(v))
-            found_digits[index] = str(v)
+        for i in range(0, len(values)):
+            if values[i:i+len(k)] == k:
+                found_digits[i] = k
+            if values[i] == str(v):
+                found_digits[i] = str(v)
+
+        # DOESNT WORK LOGIC
+        # if k in values:
+        #     index = values.index(k)
+        #     found_digits[index] = k
+        # if str(v) in values:
+        #     index = values.index(str(v))
+        #     found_digits[index] = str(v)
 
     sorted_dict = dict(sorted(found_digits.items()))
+    print(sorted_dict)
     first = list(sorted_dict.values())[0]
     last = list(sorted_dict.values())[-1]
     if len(sorted_dict) > 0:
